@@ -22,6 +22,12 @@ namespace LibraryManager.Service {
         public Book FindBookById(int bookId) {
             return _books.FirstOrDefault(b => b.Id == bookId);
         }
+        public Book FindBookByTitle(string bookTitle) {
+            return _books.FirstOrDefault(b => b.Title == bookTitle);
+        }
+        public Book FindBookByAuthor(string bookAuthor) {
+            return _books.FirstOrDefault(b => b.Author == bookAuthor);
+        }
 
         public List<Book> GetAllBooks() {
             return _books;

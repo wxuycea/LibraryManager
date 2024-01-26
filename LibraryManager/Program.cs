@@ -2,6 +2,7 @@
 using LibraryManager.Service;
 
 BookManager bookManager = new();
+SearchManager searchManager = new(bookManager);
 
 while(true) {
     Console.WriteLine("1. 책 추가");
@@ -58,12 +59,27 @@ void RemoveBook() {
 }
 
 void FindBook() {
-    Console.Write("검색할 책의 ID를 입력하세요: ");
-    int id = Convert.ToInt32(Console.ReadLine());
+    Console.WriteLine("1. ID로 검색");
+    Console.WriteLine("2. 제목으로 검색");
+    Console.WriteLine("3. 저자로 검색");
 
-    Book book = bookManager.FindBookById(id);
+    Console.Write("옵션을 선택하세요: ");
+    int searchOption = Convert.ToInt32(Console.ReadLine());
 
-    Console.WriteLine($"ID: {book.Id}, 제목: {book.Title}, 저자: {book.Author}");
+    switch(searchOption) {
+        case 1:
+            searchManager.IdSearch();
+            break;
+        case 2:
+            searchManager.TitleSearch();
+            break;
+        case 3:
+            searchManager.AuthorSearch();
+            break;
+        default:
+            Console.WriteLine("잘못된 선택입니다.");
+            break;
+    }
 }
 
 void DisplayAllBooks() {
